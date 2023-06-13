@@ -31,14 +31,14 @@ class AlienInvasion:
             
     
     def _check_events(self):
-            """Обрабатывает нажатия клавиш и события мыши."""
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-                elif event.type == pygame.KEYDOWN:
-                    self._check_keydown_events(event)
-                elif event.type == pygame.KEYUP:
-                    self._check_keyup_events(event)
+        """Обрабатывает нажатия клавиш и события мыши."""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                self._check_keydown_events(event)
+            elif event.type == pygame.KEYUP:
+                self._check_keyup_events(event)
 
     def _check_keydown_events(self, event):
         """"Реагирует на нажатие клавиш."""
