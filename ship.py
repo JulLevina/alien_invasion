@@ -1,7 +1,5 @@
 import pygame
 
-from settings import Settings
-
 
 class Ship():
     """Класс для управления кораблем."""
@@ -12,16 +10,15 @@ class Ship():
         self.settings = ai_game.settings
         self.screen_rect = ai_game.screen.get_rect()
 
-        # Загружает изоражение корабля и получает прямоугольник.
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()
-        # Каждый новый корабль появляется в середине экрана
-        self.rect.center = self.screen_rect.center
+
+        self.rect.midbottom = self.screen_rect.midbottom
+
+        self.x = float(self.rect.x)
 
         self.moving_right = False
         self.moving_left = False
-
-        self.x = float(self.rect.x)
     
     def update(self):
         """Обновляет позицию корабля с учетом флага."""
@@ -29,7 +26,6 @@ class Ship():
             self.x += self.settings.ship_speed
         if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.ship_speed
-        # обновление атрибута х
         self.rect.x = self.x
     
     def blitme(self):
