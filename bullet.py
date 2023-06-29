@@ -6,7 +6,7 @@ class Bullet(Sprite):
     """Класс для управления снарядами, выпущенными кораблем."""
 
     def __init__(self, ai_game):
-        """Создает объект снарядов в текущей похиции корабля."""
+        """Создает объект снарядов в текущей позиции корабля."""
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
@@ -21,7 +21,7 @@ class Bullet(Sprite):
         self.y = float(self.rect.y)
     
     def update(self):
-        """Перемещает позиции снаряда в вещественном формате"""
+        """Перемещает позиции снаряда в вещественном формате."""
         self.y -= self.settings.bullet_speed
         self.rect.y = self.y
     
