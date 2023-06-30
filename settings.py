@@ -8,7 +8,7 @@ class Settings():
         self.bg_color = (230, 230, 230)
 
         self.ship_limit = 3
-        
+
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)
@@ -18,7 +18,7 @@ class Settings():
 
         # Темп ускорения игры
         self.speedup_scale = 1.1
-        
+
         # Темп роста стоимости пришельцев
         self.score_scale = 1.5
 
@@ -35,7 +35,7 @@ class Settings():
 
         # Подсчет очков
         self.alien_points = 50
-    
+
     def increase_speed(self):
         """Увеличение настроек скорости и стоимости пришельцев."""
         self.ship_speed *= self.speedup_scale
