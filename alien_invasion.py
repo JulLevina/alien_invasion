@@ -20,7 +20,7 @@ class AlienInvasion:
         pygame.init()
         self.settings = Settings()
 
-        self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
@@ -35,7 +35,7 @@ class AlienInvasion:
 
         # Создание кнопки Play
         self.play_button = Button(self, "Play")
-    
+
     def run_game(self):
         """Запуск основного цикла игры."""
         while True:
@@ -45,7 +45,7 @@ class AlienInvasion:
                 self._update_bullets()
                 self._update_aliens()
             self._update_screen()
-    
+
     def _check_events(self):
         """Обрабатывает нажатия клавиш и события мыши."""
         for event in pygame.event.get():
@@ -58,7 +58,7 @@ class AlienInvasion:
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 self._check_play_button(mouse_pos)
-    
+
     def _check_play_button(self, mouse_pos):
         """Запускает новую игру при нажатии кнопки Play."""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
@@ -93,15 +93,15 @@ class AlienInvasion:
         elif event.key == pygame.K_q:
             sys.exit()
         elif event.key == pygame.K_SPACE:
-            self._fire_bullet()  
-    
+            self._fire_bullet()
+
     def _check_keyup_events(self, event):
         """Реагрует на отпускание клавиш."""
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
-    
+
     def _check_aliens_bottom(self):
         """Проверяет, добрались ли пришельцы до нижнего края экрана."""
         screen_rect = self.screen.get_rect()
@@ -110,7 +110,7 @@ class AlienInvasion:
                 # Происходит то же, что при столкновении с кораблем
                 self._ship_hit()
                 break
-    
+
     def _fire_bullet(self):
         """Создание нового снаряда и включение его в группу bullets."""
         if len(self.bullets) < self.settings.bullet_allowed:
@@ -149,7 +149,7 @@ class AlienInvasion:
             # Увеличение уровня
             self.stats.level += 1
             self.sb.prep_level()
-    
+
     def _ship_hit(self):
         """Обрабатывает столкновение корабля с пришельцем."""
         if self.stats.ships_left > 0:
@@ -170,7 +170,7 @@ class AlienInvasion:
         else:
             self.stats.game_active = False
             pygame.mouse.set_visible(True)
-    
+
     def _update_aliens(self):
         """
         Проверяет, достиг ли флот края экран.
@@ -182,7 +182,7 @@ class AlienInvasion:
         # Проверка коллизии пришелец-корабль
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
-        
+
         # проверить, добрались ли пришельцы до нижнего края экрана
         self._check_aliens_bottom()
 
@@ -203,7 +203,7 @@ class AlienInvasion:
         for row_number in range(number_rows):
             for alien_number in range(number_aliens_x):
                 self._create_alien(alien_number, row_number)
-    
+
     def _create_alien(self, alien_number, row_number):
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
@@ -211,14 +211,14 @@ class AlienInvasion:
         alien.rect.x = alien.x
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
-    
+
     def _check_fleet_edges(self):
         """Реагирует на достижение пришельцем края экрана."""
         for alien in self.aliens.sprites():
             if alien.check_edges():
                 self.change_fleet_direction()
                 break
-    
+
     def change_fleet_direction(self):
         """Опускает весь флот и меняет напровление флота."""
         for alien in self.aliens.sprites():
@@ -241,6 +241,7 @@ class AlienInvasion:
             self.play_button.draw_button()
 
         pygame.display.flip()
+
 
 if __name__ == "__main__":
     # Создание экземпляра и запуск игры
