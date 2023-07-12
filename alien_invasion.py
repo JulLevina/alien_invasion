@@ -17,10 +17,19 @@ class AlienInvasion:
 
     def __init__(self):
         """Инициализирует игру и создает игровые ресурсы."""
+        pygame.mixer.pre_init(44100, -16, 1, 512)
         pygame.init()
+        self.clock = pygame.time.Clock()
+
+        pygame.mixer.music.load('sounds/space_music.mp3')
+        pygame.mixer.music.play(-1)
+        self.bullet_sound = pygame.mixer.Sound('sounds/blast_sound.ogg')
+
         self.settings = Settings()
 
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        bg_surf = pygame.image.load('images/m_space.png')
+        self.bg_surf = bg_surf.convert_alpha()
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
@@ -45,6 +54,7 @@ class AlienInvasion:
                 self._update_bullets()
                 self._update_aliens()
             self._update_screen()
+            self.clock.tick(30)
 
     def _check_events(self):
         """Обрабатывает нажатия клавиш и события мыши."""
@@ -136,6 +146,7 @@ class AlienInvasion:
 
         if collisions:
             for aliens in collisions.values():
+                self.bullet_sound.play()
                 self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
             self.sb.check_high_score()
@@ -227,10 +238,10 @@ class AlienInvasion:
 
     def _update_screen(self):
         """Обновляет изображение на экране и отображает новый экран."""
-        self.screen.fill(self.settings.bg_color)
+        self.screen.blit(self.bg_surf, (0, 0))
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
-        self.ship.blitme()
+        self.screen.blit(self.ship.image, self.ship.rect)
         self.aliens.draw(self.screen)
 
         # Вывод информации о счете
