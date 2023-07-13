@@ -1,7 +1,7 @@
 # alien_invasion
 
 
-https://github.com/JulLevina/alien_invasion/assets/104723513/147924e8-42cb-4f25-9f3d-4b273a959700
+https://github.com/JulLevina/alien_invasion/assets/104723513/c02cbe91-e214-4faa-89b0-e665f3748f9b
 
 
 ## _Описание_
