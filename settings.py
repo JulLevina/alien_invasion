@@ -1,6 +1,3 @@
-import pygame
-
-
 class Settings():
     """Класс для хранения всех настроек игры Alien Invasion."""
 
@@ -8,6 +5,8 @@ class Settings():
         """Инициализирует статические настройки игры."""
         self.screen_width = 1000
         self.screen_height = 600
+
+        self.FPS = 60
 
         self.ship_limit = 3
 
@@ -28,9 +27,9 @@ class Settings():
 
     def initialize_dynamic_settings(self):
         """Инициализирует настройки, изменяющиеся в ходе игры."""
-        self.ship_speed = 1.5
-        self.bullet_speed = 3.0
-        self.alien_speed = 1.0
+        self.ship_speed = 5.0
+        self.bullet_speed = 10.0
+        self.alien_speed = 4.0
 
         # fleet_direction = 1 обозначает движение вправо, а -1 влево
         self.fleet_direction = 1
